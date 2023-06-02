@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePhone } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import logo from "../images/bellisima-logo.png";
 
 function header() {
@@ -32,6 +33,20 @@ function header() {
           <a href="#header-section">
             <img src={logo} alt="" />
           </a>
+          <input
+            type="checkbox"
+            id="hamburger-toggle"
+            defaultChecked={false}
+            onChange={changeval}
+            className="hamburger-toggle"
+          />
+          <label htmlFor="hamburger-toggle" className="hamburger">
+            <FontAwesomeIcon
+              icon={faBars}
+              size="xl"
+              className="harburger-bars"
+            />
+          </label>
           <ul className="main-nav">
             <li>
               <a href="#services-section">Services</a>
@@ -47,6 +62,20 @@ function header() {
             </li>
           </ul>
         </div>
+        <ul id="hamburger-main-nav" className="hamburger-main-nav">
+          <li>
+            <a href="#services-section">Services</a>
+          </li>
+          <li>
+            <a href="#designs-section">Gallery</a>
+          </li>
+          <li>
+            <a href="#about-section">About</a>
+          </li>
+          <li>
+            <a href="#contact-section">Contact</a>
+          </li>
+        </ul>
       </div>
     </>
   );
@@ -61,5 +90,22 @@ window.addEventListener("scroll", function () {
     document.getElementById("header-nav-section").classList.remove("sticky");
   }
 });
+
+window.addEventListener("resize", function () {
+  var screen = window.innerWidth;
+  if (screen > 768) {
+    document.getElementById("hamburger-main-nav").style.display = "none";
+  }
+});
+
+function changeval(checkvalue) {
+  var isChecked = checkvalue.target.checked;
+
+  if (isChecked) {
+    document.getElementById("hamburger-main-nav").style.display = "block";
+  } else {
+    document.getElementById("hamburger-main-nav").style.display = "none";
+  }
+}
 
 export default header;
